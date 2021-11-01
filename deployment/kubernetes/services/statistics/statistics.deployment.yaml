@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-statistics
+  labels:
+    name: cloudjobs-application-statistics
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-statistics
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-statistics
+    spec:
+      containers:
+      - name: cloudjobs-application-statistics
+        image: docker.io/library/cloudjobs_app_statistics_image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8083
+        resources: {}
+        env:
+          - name: PORT
+            value: "8083"
+        envFrom:
+          - configMapRef:
+              name: cloudjobs-application-database-configmap
+        

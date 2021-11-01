@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudjobs-application-statistics
+  labels:
+    name: cloudjobs-application-statistics
+spec:
+  type: NodePort 
+  ports:
+  - port: 8083
+    targetPort: 8083
+  selector:
+    name: cloudjobs-application-statistics 

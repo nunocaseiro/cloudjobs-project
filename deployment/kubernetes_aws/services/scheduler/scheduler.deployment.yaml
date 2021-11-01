@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-scheduler
+  labels:
+    name: cloudjobs-application-scheduler
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-scheduler
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-scheduler
+    spec:
+      containers:
+      - name: cloudjobs-application-scheduler
+        image: 700446461730.dkr.ecr.eu-west-2.amazonaws.com/meicm_ecr:cloudjobs_app_scheduler_image_1.2.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8084
+        resources: {}
+        env:
+          - name: PORT
+            value: "8084"
+          - name: ITJOBS_SERVICE_URL
+            value: 'http://cloudjobs-application-itjobs:8082'
+          - name: ITJOBS_STATISTICS_URL
+            value: 'http://cloudjobs-application-statistics:8083'
+          - name: ITJOBS_SEARCH_URL
+            value: 'http://cloudjobs-application-search:8086'
+          - name: ITJOBS_GATHERKEYWORDS_URL
+            value: 'http://cloudjobs-application-gatherkeywords:8085'    
+        envFrom:
+          - configMapRef:
+              name: cloudjobs-application-database-configmap

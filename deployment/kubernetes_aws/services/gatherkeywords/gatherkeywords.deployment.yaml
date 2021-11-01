@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-gatherkeywords
+  labels:
+    name: cloudjobs-application-gatherkeywords
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-gatherkeywords
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-gatherkeywords
+    spec:
+      containers:
+      - name: cloudjobs-application-gatherkeywords
+        image: 700446461730.dkr.ecr.eu-west-2.amazonaws.com/meicm_ecr:cloudjobs_app_gatherkeywords_image_1.0.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8085
+        resources: {}
+        env:
+            - name: PORT
+              value: "8085"
+        envFrom:
+          - configMapRef:
+              name: cloudjobs-application-database-configmap

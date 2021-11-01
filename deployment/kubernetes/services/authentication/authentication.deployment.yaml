@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-authentication
+  labels:
+    name: cloudjobs-application-authentication
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-authentication
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-authentication
+    spec:
+      containers:
+      - name: cloudjobs-application-authentication
+        image: docker.io/library/cloudjobs_app_authentication_image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        resources: {}
+        env:
+            - name: PORT
+              value: "8081"
+        envFrom:
+          - configMapRef:
+              name: cloudjobs-application-database-configmap
+        

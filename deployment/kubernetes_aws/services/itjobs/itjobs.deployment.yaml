@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-itjobs
+  labels:
+    name: cloudjobs-application-itjobs
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-itjobs
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-itjobs
+    spec:
+      containers:
+      - name: cloudjobs-application-itjobs
+        image: 700446461730.dkr.ecr.eu-west-2.amazonaws.com/meicm_ecr:cloudjobs_app_itjobs_image_1.0.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8082
+        resources: {}
+        env:
+          - name: ITJOBS_KEY
+            value: 02c5a7b5e6609e75e8a896bd54c2a160
+          - name: ITJOBS_URL
+            value: http://api.sandbox.itjobs.pt
+          - name: PORT
+            value: "8082"  
+        
+        

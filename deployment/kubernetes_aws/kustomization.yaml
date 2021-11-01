@@ -1,0 +1,12 @@
+bases:
+  - ../kubernetes
+  - ingress/deploy.yaml
+  - ingress/ingress.yaml
+patches:
+  - services/authentication/authentication.deployment.yaml
+  - services/itjobs/itjobs.deployment.yaml
+  #- services/frontend/frontend.deployment.yaml
+  - services/scheduler/scheduler.deployment.yaml
+  - services/statistics/statistics.deployment.yaml
+  - services/gatherkeywords/gatherkeywords.deployment.yaml
+  - services/search/search.deployment.yaml

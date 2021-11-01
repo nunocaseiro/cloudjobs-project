@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudjobs-application-scheduler
+  labels:
+    name: cloudjobs-application-scheduler
+spec:
+  type: NodePort
+  ports:
+  - port: 8084
+    targetPort: 8084
+  selector:
+    name: cloudjobs-application-scheduler

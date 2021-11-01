@@ -1,0 +1,39 @@
+services:
+  cloudjobs_application_authentication:
+    image: cloudjobs_app_authentication_image
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/authentication/Dockerfile
+  #cloudjobs_application_frontend:
+  #  image: cloudjobs_app_frontend_image
+  #  build:
+  #    context: ../../src/
+  #    dockerfile: ../deployment/kubernetes/services/frontend/Dockerfile    
+  cloudjobs_application_itjobs:
+    image: cloudjobs_app_itjobs_image
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/itjobs/Dockerfile
+  cloudjobs_application_scheduler:
+    image: cloudjobs_app_scheduler_image
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/scheduler/Dockerfile
+  cloudjobs_application_statistics:
+    image: cloudjobs_app_statistics_image
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/statistics/Dockerfile
+  cloudjobs_application_gatherkeywords:
+    image: cloudjobs_app_gatherkeywords_image
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/gatherkeywords/Dockerfile
+  cloudjobs_application_search:
+    image: cloudjobs_app_search_image
+    container_name: cloudjobs_application_search
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/kubernetes/services/search/Dockerfile
+                    
+  

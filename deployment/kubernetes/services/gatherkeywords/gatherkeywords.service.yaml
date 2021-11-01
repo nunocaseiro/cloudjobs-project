@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudjobs-application-gatherkeywords
+  labels:
+    name: cloudjobs-application-gatherkeywords
+spec:
+  type: NodePort
+  ports:
+  - port: 8085
+    targetPort: 8085
+  selector:
+    name: cloudjobs-application-gatherkeywords 

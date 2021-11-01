@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloudjobs-application-search
+  labels:
+    name: cloudjobs-application-search
+spec:
+  type: NodePort
+  ports:
+  - port: 8086
+    targetPort: 8086
+  selector:
+    name: cloudjobs-application-search 

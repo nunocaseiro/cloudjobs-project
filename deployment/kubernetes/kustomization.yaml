@@ -1,0 +1,18 @@
+resources:
+  - config/database.config_map.yaml
+  - services/authentication/authentication.deployment.yaml
+  - services/authentication/authentication.service.yaml
+  #- services/database/database.deployment.yaml
+  #- services/database/database.service.yaml
+  #- services/frontend/frontend.deployment.yaml
+  #- services/frontend/frontend.service.yaml
+  - services/gatherkeywords/gatherkeywords.deployment.yaml
+  - services/gatherkeywords/gatherkeywords.service.yaml
+  - services/itjobs/itjobs.deployment.yaml
+  - services/itjobs/itjobs.service.yaml
+  - services/scheduler/scheduler.deployment.yaml
+  - services/scheduler/scheduler.service.yaml
+  - services/search/search.deployment.yaml
+  - services/search/search.service.yaml
+  - services/statistics/statistics.deployment.yaml
+  - services/statistics/statistics.service.yaml

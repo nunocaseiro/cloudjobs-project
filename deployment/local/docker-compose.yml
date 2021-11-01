@@ -1,0 +1,111 @@
+services:
+  cloudjobs_database:
+    image: mongo
+    container_name: cloudjobs_database
+    ports:
+      - "27017:27017"
+  cloudjobs_application_authentication:
+    image: cloudjobs_app_authentication_image
+    container_name: cloudjobs_application_authentication
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/authentication/Dockerfile
+    volumes:
+      - ../../src/services/authentication:/app/authentication
+    ports:
+      - "8081:8080"
+    depends_on: 
+      - "cloudjobs_database"
+    environment:
+      - DB_HOST=cloudjobs_database
+      - DB_PORT=27017
+      - DB_NAME=cloudjobs
+  cloudjobs_application_frontend:
+    image: cloudjobs_app_frontend_image
+    container_name: cloudjobs_application_frontend
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/frontend/Dockerfile
+    volumes:
+      - ../../src/frontend:/app/frontend
+    ports:
+      - "8080:8080"
+  cloudjobs_application_itjobs:
+    image: cloudjobs_app_itjobs_image
+    container_name: cloudjobs_application_itjobs
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/itjobs/Dockerfile
+    volumes:
+      - ../../src/services/itjobs:/app/itjobs
+    ports:
+      - "8082:8080"
+    environment: 
+      - ITJOBS_KEY=02c5a7b5e6609e75e8a896bd54c2a160
+      - ITJOBS_URL=http://api.sandbox.itjobs.pt
+  cloudjobs_application_scheduler:
+    image: cloudjobs_app_scheduler_image
+    container_name: cloudjobs_application_scheduler
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/scheduler/Dockerfile
+    volumes:
+      - ../../src/services/scheduler:/app/scheduler
+    ports:
+      - "8084:8080"
+    depends_on: 
+      - "cloudjobs_database"
+    environment:
+      - DB_HOST=cloudjobs_database
+      - DB_PORT=27017
+      - DB_NAME=cloudjobs  
+  cloudjobs_application_statistics:
+    image: cloudjobs_app_statistics_image
+    container_name: cloudjobs_application_statistics
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/statistics/Dockerfile
+    volumes:
+      - ../../src/services/statistics:/app/statistics
+    ports:
+      - "8083:8080"
+    depends_on: 
+      - "cloudjobs_database"
+    environment:
+          - DB_HOST=cloudjobs_database
+          - DB_PORT=27017
+          - DB_NAME=cloudjobs
+  cloudjobs_application_gatherkeywords:
+    image: cloudjobs_app_gatherkeywords_image
+    container_name: cloudjobs_application_gatherkeywords
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/gatherkeywords/Dockerfile
+    volumes:
+      - ../../src/services/gatherkeywords:/app/gatherkeywords
+    ports:
+      - "8085:8080"
+    depends_on: 
+      - "cloudjobs_database"
+    environment:
+      - DB_HOST=cloudjobs_database
+      - DB_PORT=27017
+      - DB_NAME=cloudjobs
+  cloudjobs_application_search:
+    image: cloudjobs_app_search_image
+    container_name: cloudjobs_application_search
+    build:
+      context: ../../src/
+      dockerfile: ../deployment/local/services/search/Dockerfile
+    volumes:
+      - ../../src/services/search:/app/search
+    ports:
+      - "8086:8080"
+    depends_on: 
+      - "cloudjobs_database"
+    environment:
+      - DB_HOST=cloudjobs_database
+      - DB_PORT=27017
+      - DB_NAME=cloudjobs    
+                    
+  

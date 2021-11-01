@@ -1,0 +1,5 @@
+**/node_modules
+.terraform/*
+provisioning/aws/.terraform/providers/registry.terraform.io/hashicorp/aws/3.44.0/darwin_amd64/terraform-provider-aws_v3.44.0_x5
+.terraform*
+*.tfstate*

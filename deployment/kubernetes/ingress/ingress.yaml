@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: cloudjobs-application-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-authentication
+              servicePort: 8081
+          - path: /api/itjobs/
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-itjobs
+              servicePort: 8082
+          - path: /api/statistics/
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-statistics
+              servicePort: 8083
+          - path: /api/
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-authentication
+              servicePort: 8081
+          - path: /api/keywords/
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-gatherkeywords
+              servicePort: 8085   
+          - path: /api/search/
+            pathType: Prefix
+            backend:
+              serviceName: cloudjobs-application-search
+              servicePort: 8086         

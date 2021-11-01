@@ -1,0 +1,10 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: cloudjobs-application-database-configmap
+  namespace: default
+data:
+  # Configuration Values are stored as key-value pairs
+  DB_USERNAME: "meicmproject2"
+  DB_PASSWORD: "meicm2021"
+  DB_NAME: "cloudjobs"

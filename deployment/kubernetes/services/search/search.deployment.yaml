@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: cloudjobs-application-search
+  labels:
+    name: cloudjobs-application-search
+spec:
+  selector:
+    matchLabels:
+      name: cloudjobs-application-search
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: cloudjobs-application-search
+    spec:
+      containers:
+      - name: cloudjobs-application-search
+        image: docker.io/library/cloudjobs_app_search_image
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8086
+        resources: {}
+        env:
+          - name: PORT
+            value: "8086"
+        envFrom:
+          - configMapRef:
+              name: cloudjobs-application-database-configmap
