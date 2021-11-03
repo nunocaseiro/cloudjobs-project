@@ -1,6 +1,7 @@
 # Cloud Jobs
 
-This is the application for the second project of the Cloud Computing course of MEICM. 
+This is the application for the second project of the Cloud Computing course of MEICM.  
+
 Tech: Terraform, Kubernetes, Express
 Infra: AWS, GCP and Azure
 
